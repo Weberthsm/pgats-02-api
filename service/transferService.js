@@ -1,7 +1,11 @@
 const { users } = require('../model/userModel');
 const { transfers } = require('../model/transferModel');
 
-function transfer({ from, to, value }) {
+function transfer({ from, to, value }, loggedUser) {
+    // if (loggedUser.username !== from) {
+    //   throw new Error('Operação não permitida: usuário autenticado não corresponde ao remetente da transferência');
+    // }
+
   const sender = users.find(u => u.username === from);
   const recipient = users.find(u => u.username === to);
   if (!sender || !recipient) throw new Error('Usuário remetente ou destinatário não encontrado');
