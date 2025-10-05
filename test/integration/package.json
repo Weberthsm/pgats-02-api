@@ -1,0 +1,14 @@
+{
+	"scripts": {
+		"integration": "mocha test/integration/**/*.test.js --timeout 200000 --reporter mochawesome",
+		"performance": "k6 run performance/example.js"
+	},
+	"dependencies": {
+		"chai": "^6.2.0",
+		"dotenv": "^17.2.2",
+		"fakerator": "^0.3.6",
+		"mocha": "^11.7.2",
+		"mochawesome": "^7.1.4",
+		"supertest": "^7.1.4"
+	}
+}
