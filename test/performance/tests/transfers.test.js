@@ -13,8 +13,7 @@ export const options = {
         {duration: '10s', target: 30},
         {duration: '5s',  target:  0}
       ],
-
-  
+ 
 //  vus: 10,
 //  duration: '30s',
 };
