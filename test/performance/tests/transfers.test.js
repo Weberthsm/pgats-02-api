@@ -39,7 +39,7 @@ export default function() {
  const res = http.post(url, payload, params);
   sleep(1);
 
- console.log(res);
+// console.log(res);
 
   check(res, {
     'Validar que status é 201': (r) => r.status === 201,

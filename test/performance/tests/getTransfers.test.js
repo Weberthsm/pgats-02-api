@@ -7,11 +7,11 @@ export const options = {
    
     stages:[
         {duration: '5s',  target: 100},
-        {duration: '10s', target: 400},  
-        {duration: '5s',  target: 600},
-        {duration: '10s', target: 800},
-        {duration: '5s',  target: 1000},
-        {duration: '10s', target: 1000},
+        {duration: '10s', target: 200},  
+        {duration: '5s',  target: 300},
+        {duration: '10s', target: 400},
+        {duration: '5s',  target: 500},
+        {duration: '10s', target: 100},
         {duration: '5s',  target:  0}   
 
     ],
@@ -32,7 +32,7 @@ export default function () {
         },
     };
     const res = http.get(url, params);
-    console.log(res.body);
+    //console.log(res.body);
     check(res, {
         'status é 200': (r) => r.status === 200,
         'Response não é vazio': (r) => r.body && r.body.length > 0,  

@@ -7,9 +7,10 @@ const postUsersRegister = JSON.parse(open('../fixtures/postUsersRegister.json'))
 export const options ={
     
     stages:[
-        {duration:  '5s', target:5},
-        {duration: '10s', target:10},
-        {duration:  '5s', target:5}
+        {duration:  '20s', target:50},
+        {duration: '10s', target:100},
+        {duration:  '5s', target:60},
+        {duration: '10s', target:0},
     ],
     
     //iterations: 1,

@@ -3,9 +3,18 @@ import { check, sleep } from 'k6';
 import { pegarBaseUrl } from '../utils/variaveis.js';
 
 export const options = {
-   vus: 1000, 
-   duration: '15s', 
- 
+//    vus: 200, 
+//    duration: '15s', 
+   stages:[
+        {duration: '5s',  target: 100},
+        {duration: '10s', target: 200},  
+        {duration: '5s',  target: 300},
+        {duration: '10s', target: 400},
+        {duration: '5s',  target: 500},
+        {duration: '10s', target: 100},
+        {duration: '5s',  target:  0}   
+
+    ],
 
     thresholds: {
         http_req_duration: ['p(95)<200'], 
@@ -22,10 +31,10 @@ export default function () {
     };
 
     const res = http.get(url, params);
-    console.log(res.body);
+   // console.log(res.body);
     check(res, {
-        'status is 200': (r) => r.status === 200,
-        'body is not empty': (r) => r.body && r.body.length > 0,  
+        'status é 200': (r) => r.status === 200,
+        'body não é vazio': (r) => r.body && r.body.length > 0,  
     });
 
     sleep(1); 
