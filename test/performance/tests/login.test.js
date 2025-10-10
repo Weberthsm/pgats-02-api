@@ -8,19 +8,19 @@ export const options = {
 //vus: 10,    // simula 10 usuários simultaneos
 //  duration: '30s',
 
- /*   stages:[
+   stages:[
         {duration: '10s', target: 10},
         {duration: '20s', target: 10},
         {duration: '10s', target: 30},
-        {duration: '20s', target: 1000},
+        {duration: '20s', target: 100},
         {duration: '20s', target: 0}
       ],
-*/
-    iterations: 10,
+
+    //iterations: 1,
     thresholds: {
     
-    http_req_duration: ['p(95)<3000', 'max <5000'], // 95% of requests should be below 200ms
-    http_req_failed: ['rate<0.01'], // http errors should be less than 1%
+    http_req_duration: ['p(95)<3000', 'max <5000'], // 95% of requests should be below 5s
+    http_req_failed: ['rate<0.01'], // http errors abaixo de 1%
   },
 };
 
@@ -29,7 +29,7 @@ export default function () {
   const url = pegarBaseUrl()+'/users/login';
   //postLogin.username = "priscila"; 
   const payload = JSON.stringify(postUsersLogin);
-  console.log(postUsersLogin);
+  //console.log(postUsersLogin);
 
 
   const params = {

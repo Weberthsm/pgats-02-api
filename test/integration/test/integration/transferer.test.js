@@ -23,7 +23,7 @@ describe('Transfers', () => {
             const boryPostTransfers = { ...postTransfers }
             boryPostTransfers.from = "julio";
             boryPostTransfers.to = "priscila";
-            boryPostTransfers.value = 2000.99;
+            boryPostTransfers.value = 100.99;
 
 
             const Response = await request(process.env.BASE_URL)
@@ -33,8 +33,9 @@ describe('Transfers', () => {
                 .send(boryPostTransfers)
 
 
-             //console.log(Response.body);
+            //console.log(Response.body);
             expect(Response.status).to.equal(201);
+            expect(Response.body.value).to.equal(100.99);
 
         })
 
@@ -43,7 +44,7 @@ describe('Transfers', () => {
                 .post('/transfers')
                 .set('Authorization', `Bearer ${token}`)
                 .send({ from: 'priscila', to: 'julio', value: 100 });
-             // console.log(Response.body);
+            // console.log(Response.body);
             expect(Response.status).to.equals(403);
             expect(Response.body).toHaveProperty('error');
         });
@@ -55,7 +56,7 @@ describe('Transfers', () => {
                 .post('/transfers')
                 .set('Authorization', `Bearer ${token}`)
                 .send({ from: 'julio', to: 'weberth', value: 5000.01 });
-                // console.log(Response.body);
+            // console.log(Response.body);
 
             expect(Response.status).to.equal(400); // eu usario 403 aqui
             expect(Response.body).to.have.property('error');
@@ -68,14 +69,29 @@ describe('Transfers', () => {
             const Response = await request(process.env.BASE_URL)
                 .post('/transfers')
                 .set('Authorization', `Bearer ${token}`)
-                .send({ from: 'julio', to: 'weberth', value: 50});
-                 //console.log(Response.body);
+                .send({ from: 'julio', to: 'weberth', value: 50 });
+            //console.log(Response.body);
 
-            expect(Response.status).to.equal(201); 
+            expect(Response.status).to.equal(201);
             expect(Response.body.from).to.equal('julio');
             expect(Response.body.to).to.equal('weberth');
-            expect(Response.body.value).to.equal(50);        
+            expect(Response.body.value).to.equal(50);
 
+        });
+
+        it('Deve retornar 201 ao transferir acima de 5000 para favorecidos de sua conta', async () => {
+
+            const Response = await request(process.env.BASE_URL)
+                .post('/transfers')
+                .set('content-type', 'application/json')
+                .set('Authorization', `Bearer ${token}`)
+                .send({ from: 'julio', to: 'joao', value: 5000.01 });
+
+            console.log(Response.body);
+            expect(Response.status).to.equal(201);
+            expect(Response.body).to.have.property('from', 'julio');
+            expect(Response.body).to.have.property('to', 'joao');
+            expect(Number(Response.body.value)).to.equal(5000.01);
         });
 
     });
@@ -89,7 +105,7 @@ describe('Transfers', () => {
                 .set('Authorization', `Bearer ${token}`)
 
             const dadosEsperados = [
-                { from: 'priscila', to: 'julio', value: 5001.99, date: '2025-10-04T20:23:50.744Z' }
+                { from: 'priscila', to: 'julio', value: 1.99, date: '2025-10-04T20:23:50.744Z' }
             ];
 
             // console.log(Response.body);

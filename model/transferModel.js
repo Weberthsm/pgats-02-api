@@ -3,7 +3,7 @@ const transfers = [
   {
   "from": "priscila",
   "to": "julio",
-  "value": 5001.99,
+  "value": 1.99,
   "date": "2025-10-04T20:23:50.744Z"
 }];
 
